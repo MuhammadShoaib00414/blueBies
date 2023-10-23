@@ -154,8 +154,8 @@
 
                         <li class="nav-item">
                             <a class="nav-link {{
-                        active_class(Route::is('admin/faqs'))
-                    }}" href="{{ route('admin.faqs.index') }}">
+                        active_class(Route::is('admin/supports'))
+                    }}" href="{{ route('admin.supports.index') }}">
 
                                 Support Ticket
                             </a>

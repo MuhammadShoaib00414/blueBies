@@ -12,6 +12,7 @@ require __DIR__.'/blog-tags/blog-tags.php';
 require __DIR__.'/pages/page.php';
 require __DIR__.'/faqs/faq.php';
 require __DIR__.'/contacts/contact.php';
+require __DIR__.'/supports/supports.php';
 require __DIR__.'/email-templates/email-template.php';
 require __DIR__.'/auth/permission.php';
 
