@@ -25,7 +25,7 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
         Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
     });
 
-    Route::group(['middleware' => ['auth:api']], function () {
+    // Route::group(['middleware' => ['auth:api']], function () {
         Route::group(['prefix' => 'auth'], function () {
             Route::post('logout', 'AuthController@logout');
             Route::get('me', 'AuthController@me');
@@ -40,6 +40,14 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
         // support
         Route::apiResource('support', 'SupportsController');
 
+        Route::middleware(['cors'])->group(function () {
+            Route::get('partners', 'SupportsController@partners');
+
+            Route::get('faqs-data', 'SupportsController@faqs');
+
+        });
+        // partner
+       
 
         // Blog Categories
         Route::apiResource('blog-categories', 'BlogCategoriesController');
@@ -49,5 +57,5 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
 
         // Blogs
         Route::apiResource('blogs', 'BlogsController');
-    });
+    // });
 });

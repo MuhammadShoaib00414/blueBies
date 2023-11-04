@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api\V1;
 
 
 use App\Http\Resources\FaqsResource;
+use App\Models\Partners;
+use App\Models\Faq;
+use App\Models\Contacts;
 use App\Models\SupportRequest;
 use App\Repositories\Backend\FaqsRepository;
 use Illuminate\Http\Response;
@@ -58,10 +61,28 @@ class SupportsController extends APIController
     {
         $supportData = SupportRequest::all(); // Retrieve all support records
         return response()->json($supportData);
-
-       
     }
 
+    public function partners()
+    {
+        $supportData = Partners::all(); // Retrieve all support records
+        return response()->json($supportData);  
+    }
+
+
+    public function faqs()
+    {
+        $faqs = Faq::all(); // Retrieve all FAQs
+        $contacts = Contacts::first(); // Retrieve all contacts
+    
+        $data = [
+            'faqs' => $faqs,
+            'contacts' => $contacts,
+        ];
+    
+        return response()->json($data);
+    }
+    
     /**
      * Gives a specific Faq.
      *

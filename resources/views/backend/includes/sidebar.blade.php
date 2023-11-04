@@ -64,14 +64,14 @@
 
                 <li class="divider"></li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link {{
                         active_class(Route::is('admin/pages'))
                     }}" href="{{ route('admin.pages.index') }}">
                         <i class="nav-icon fas fa-file"></i>
-                        @lang('menus.backend.sidebar.pages')
+@lang('menus.backend.sidebar.pages')
                     </a>
-                </li>
+                </li> -->
 
                 <li class="divider"></li>
 
@@ -86,14 +86,14 @@
 
                 <li class="divider"></li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link {{
                         active_class(Route::is('admin/email-templates'))
                     }}" href="{{ route('admin.email-templates.index') }}">
                         <i class="nav-icon fas fa-envelope"></i>
-                        @lang('menus.backend.sidebar.email-templates')
+@lang('menus.backend.sidebar.email-templates')
                     </a>
-                </li>
+                </li> -->
 
                 <li class="divider"></li>
 
@@ -132,6 +132,16 @@
                     </ul>
                 </li>
                 <li class="divider">
+                <li class="nav-item">
+                    <a class="nav-link {{
+                        active_class(Route::is('admin/partners'))
+                    }}" href="{{ route('admin.partners.index') }}">
+                        <i class="nav-icon fas fa-file"></i>
+                        Partners
+                    </a>
+                </li>
+                <li class="divider">
+
                 <li>
                 <li class="nav-item nav-dropdown {{
                     active_class(Route::is('admin/faqs*'), 'open')
@@ -139,7 +149,7 @@
                     <a class="nav-link nav-dropdown-toggle {{
                             active_class(Route::is('admin/faqs*'))
                         }}" href="#">
-                        <i class="nav-icon fas fa-question-circle"></i> Support and assistance
+                        <i class="nav-icon fas fa-question-circle"></i> Support & Assistance
                     </a>
 
                     <ul class="nav-dropdown-items">
