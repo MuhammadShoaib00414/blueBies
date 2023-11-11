@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.backend.access.faqs.management'))
+@section('title', app_name())
 
 @section('breadcrumb-links')
 @include('backend.faqs.includes.breadcrumb-links')

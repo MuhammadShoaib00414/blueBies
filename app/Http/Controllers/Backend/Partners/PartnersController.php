@@ -64,24 +64,27 @@ class PartnersController extends Controller
      */
     public function update(StorePartneRequest $request)
     {
+       
         $id = $request->input('id');
-        
+       
         // Ensure the "partners" directory exists for image uploads.
         $partnerDirectory = public_path('uploads/partners');
         if (!is_dir($partnerDirectory)) {
             mkdir($partnerDirectory, 0777, true);
         }
 
-        // Process and move the uploaded images to the "partners" directory.
         $uploadedFiles = $request->file('images');
-        $imagePaths = [];
-
-        foreach ($uploadedFiles as $uploadedFile) {
-            $fileName = $uploadedFile->getClientOriginalName();
-            $uploadedFile->move($partnerDirectory, $fileName);
-            $imagePaths[] = 'uploads/partners/' . $fileName;
+        $imagePaths = []; // Define $imagePaths before the if block
+    
+        if ($uploadedFiles != null) {
+            foreach ($uploadedFiles as $uploadedFile) {
+                $fileName = $uploadedFile->getClientOriginalName();
+                $uploadedFile->move($partnerDirectory, $fileName);
+                $imagePaths[] = 'uploads/partners/' . $fileName;
+            }
         }
-
+        // Process and move the uploaded images to the "partners" directory.
+        
         // Load the existing Partners model.
         $data = Partners::find($id);
 
@@ -96,10 +99,10 @@ class PartnersController extends Controller
         $combinedImagePaths = array_merge($existingImagePaths ?? [], $imagePaths);
 
         $data->images = json_encode($combinedImagePaths);
-        $data->locslization = json_encode([
+        $data->localization = json_encode([
             'ar' => [
-                'title' => isset($request->input('localization')[0]) ? $request->input('localization')[0] : null,
-                'heading' => isset($request->input('localization')[1]) ? $request->input('localization')[1] : null,
+                'title' => isset($request->input('localization')['ar']['title']) ? $request->input('localization')['ar']['title'] : null,
+                'heading' => isset($request->input('localization')['ar']['heading']) ? $request->input('localization')['ar']['heading'] : null,
             ]
         ,],JSON_UNESCAPED_UNICODE);
 

@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.access.contacts.management') . ' | ' . __('labels.backend.access.contacts.edit'))
+@section('title', app_name())
 
 @section('breadcrumb-links')
     @include('backend.contacts.includes.breadcrumb-links')

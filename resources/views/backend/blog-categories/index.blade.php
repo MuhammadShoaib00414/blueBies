@@ -26,6 +26,7 @@
                         <thead>
                             <tr>
                                 <th>{{ trans('labels.backend.access.blog-category.table.name') }}</th>
+                                <!-- <th>Localization</th> -->
                                 <th>{{ trans('labels.backend.access.blog-category.table.status') }}</th>
                                 <th>{{ trans('labels.backend.access.blog-category.table.createdby') }}</th>
                                 <th>{{ trans('labels.backend.access.blog-category.table.createdat') }}</th>

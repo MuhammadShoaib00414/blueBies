@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeaturesTable extends Migration
+class AddLocalizationToBlogCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateFeaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('features', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        Schema::table('blog_categories', function (Blueprint $table) {
+            $table->string('localization')->nullable()->after('name'); // Adjust the position accordingly
         });
     }
 
@@ -26,6 +25,8 @@ class CreateFeaturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('features');
+        Schema::table('blog_categories', function (Blueprint $table) {
+            $table->dropColumn('localization');
+        });
     }
 }

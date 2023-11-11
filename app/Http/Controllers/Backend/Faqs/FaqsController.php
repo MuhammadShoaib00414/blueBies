@@ -57,10 +57,35 @@ class FaqsController extends Controller
      */
     public function store(StoreFaqsRequest $request)
     {
-        $this->repository->create($request->except('_token'));
+        // Get all input data from the request
+        $requestData = $request->all();
+    
+        // Create an empty array to store the localized data
+        $localizedData = [];
 
+        // Loop through the provided localization array
+        foreach ($requestData['localization'] as $index => $language) {
+            // Use language code as key (assuming the language code is available)
+            $languageCode = 'ar'; // Replace 'ar' with the actual language code
+            $localizedData[$languageCode] = [
+                'name' => $requestData['localization'][0],
+                'answer' => $requestData['localization'][1],
+                // Add other fields as needed
+            ];
+        }
+    
+        // Convert the localized data to JSON
+        $localizedDataJson = json_encode($localizedData);
+    
+        // Update the request data with the JSON representation
+        $requestData['localization'] = $localizedDataJson;
+    
+        // Create the FAQ using the updated request data
+        $this->repository->create($requestData);
+    
         return new RedirectResponse(route('admin.faqs.index'), ['flash_success' => __('alerts.backend.faqs.created')]);
     }
+    
 
     /**
      * @param \App\Models\Faq $faq
@@ -81,10 +106,35 @@ class FaqsController extends Controller
      */
     public function update(Faq $faq, UpdateFaqsRequest $request)
     {
-        $this->repository->update($faq, $request->except(['_token', '_method']));
-
+        // Get all input data from the request
+        $requestData = $request->all();
+    
+        // Create an empty array to store the localized data
+        $localizedData = [];
+    
+        // Loop through the provided localization array
+        foreach ($requestData['localization'] as $index => $language) {
+            // Use language code as key (assuming the language code is available)
+            $languageCode = 'ar'; // Replace 'ar' with the actual language code
+            $localizedData[$languageCode] = [
+                'name' => $requestData['localization'][0],
+                'answer' => $requestData['localization'][1],
+                // Add other fields as needed
+            ];
+        }
+    
+        // Convert the localized data to JSON
+        $localizedDataJson = json_encode($localizedData);
+    
+        // Update the request data with the JSON representation
+        $requestData['localization'] = $localizedDataJson;
+    
+        // Update the FAQ using the updated request data
+        $this->repository->update($faq, $requestData);
+    
         return new RedirectResponse(route('admin.faqs.index'), ['flash_success' => __('alerts.backend.faqs.updated')]);
     }
+    
 
     /**
      * @param \App\Models\Faq $faq

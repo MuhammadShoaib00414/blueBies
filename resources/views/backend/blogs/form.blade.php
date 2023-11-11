@@ -3,7 +3,8 @@
         <div class="col-sm-5">
             <h4 class="card-title mb-0">
                 {{ __('labels.backend.access.blogs.management') }}
-                <small class="text-muted">{{ (isset($blog)) ? __('labels.backend.access.blogs.edit') : __('labels.backend.access.blogs.create') }}</small>
+                <small
+                    class="text-muted">{{ (isset($blog)) ? __('labels.backend.access.blogs.edit') : __('labels.backend.access.blogs.create') }}</small>
             </h4>
         </div>
         <!--col-->
@@ -17,8 +18,14 @@
             <div class="form-group row">
                 {{ Form::label('name', trans('validation.attributes.backend.access.blogs.title'), ['class' => 'col-md-2 from-control-label required']) }}
 
-                <div class="col-md-10">
+                <div class="col-md-4">
                     {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.backend.access.blogs.title'), 'required' => 'required']) }}
+                </div>
+
+                {{ Form::label('name', trans('Blog In Arabic'), ['class' => 'col-md-2 from-control-label required']) }}
+
+                <div class="col-md-4">
+                    {{ Form::text('localization[]', null, ['class' => 'form-control', 'placeholder' => trans('Blog In Arabic'), 'required' => 'required']) }}
                 </div>
                 <!--col-->
             </div>
@@ -39,9 +46,9 @@
 
                 <div class="col-md-10">
                     @if(!empty($blog->publish_datetime))
-                    {{ Form::text('publish_datetime', \Carbon\Carbon::parse($blog->publish_datetime)->format('m/d/Y h:i a'), ['class' => 'form-control publish_datetime box-size', 'placeholder' => trans('validation.attributes.backend.access.blogs.publish_date_time'), 'required' => 'required', 'id' => 'publish_datetime']) }}
+                        {{ Form::text('publish_datetime', \Carbon\Carbon::parse($blog->publish_datetime)->format('m/d/Y h:i a'), ['class' => 'form-control publish_datetime box-size', 'placeholder' => trans('validation.attributes.backend.access.blogs.publish_date_time'), 'required' => 'required', 'id' => 'publish_datetime']) }}
                     @else
-                    {{ Form::text('publish_datetime', null, ['class' => 'form-control publish_datetime box-size', 'placeholder' => trans('validation.attributes.backend.access.blogs.publish_date_time'), 'required' => 'required', 'id' => 'publish_datetime']) }}
+                        {{ Form::text('publish_datetime', null, ['class' => 'form-control publish_datetime box-size', 'placeholder' => trans('validation.attributes.backend.access.blogs.publish_date_time'), 'required' => 'required', 'id' => 'publish_datetime']) }}
                     @endif
                 </div>
                 <!--col-->
@@ -52,16 +59,17 @@
                 {{ Form::label('featured_image', trans('validation.attributes.backend.access.blogs.featured_image'), ['class' => 'col-md-2 from-control-label required']) }}
 
                 @if(!empty($blog->featured_image))
-                <div class="col-lg-1">
-                    <img src="{{ asset('storage/img/blog/'.$blog->featured_image) }}" height="80" width="80">
-                </div>
-                <div class="col-lg-5">
-                    {{ Form::file('featured_image', ['id' => 'featured_image']) }}
-                </div>
+                    <div class="col-lg-1">
+                        <img src="{{ asset('storage/img/blog/'.$blog->featured_image) }}"
+                            height="80" width="80">
+                    </div>
+                    <div class="col-lg-5">
+                        {{ Form::file('featured_image', ['id' => 'featured_image']) }}
+                    </div>
                 @else
-                <div class="col-lg-5">
-                    {{ Form::file('featured_image', ['id' => 'featured_image']) }}
-                </div>
+                    <div class="col-lg-5">
+                        {{ Form::file('featured_image', ['id' => 'featured_image']) }}
+                    </div>
                 @endif
             </div>
             <!--form-group-->
@@ -72,6 +80,13 @@
                 <div class="col-md-10">
                     {{ Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.backend.access.blogs.content')]) }}
                 </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('content', trans('Content In Arabic'), ['class' => 'col-md-2 from-control-label required']) }}
+
+                <div class="col-md-10">
+                    {{ Form::textarea('localization[]', null, ['class' => 'form-control', 'placeholder' => trans('Content In Arabic')]) }}
+                </div>
                 <!--col-->
             </div>
             <!--form-group-->
@@ -81,9 +96,9 @@
 
                 <div class="col-md-10">
                     @if(!empty($selectedtags))
-                    {{ Form::select('tags[]', $blogTags, $selectedtags, ['class' => 'form-control tags', 'placeholder' => trans('validation.attributes.backend.access.blogs.tags'), 'required' => 'required', 'multiple' => 'multiple']) }}
+                        {{ Form::select('tags[]', $blogTags, $selectedtags, ['class' => 'form-control tags', 'placeholder' => trans('validation.attributes.backend.access.blogs.tags'), 'required' => 'required', 'multiple' => 'multiple']) }}
                     @else
-                    {{ Form::select('tags[]', $blogTags, null, ['class' => 'form-control tags', 'data-placeholder' => trans('validation.attributes.backend.access.blogs.tags'), 'required' => 'required', 'multiple' => 'multiple']) }}
+                        {{ Form::select('tags[]', $blogTags, null, ['class' => 'form-control tags', 'data-placeholder' => trans('validation.attributes.backend.access.blogs.tags'), 'required' => 'required', 'multiple' => 'multiple']) }}
                     @endif
                 </div>
                 <!--col-->
@@ -158,8 +173,10 @@
 
 @section('pagescript')
 <script type="text/javascript">
-    FTX.Utils.documentReady(function() {
-        FTX.Blogs.edit.init("{{ config('locale.languages.' . app()->getLocale())[1] }}");
+    FTX.Utils.documentReady(function () {
+        FTX.Blogs.edit.init(
+            "{{ config('locale.languages.' . app()->getLocale())[1] }}");
     });
+
 </script>
 @stop

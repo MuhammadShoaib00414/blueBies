@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Blogs\ManageBlogsRequest;
 use App\Http\Requests\Backend\Blogs\StoreBlogsRequest;
 use App\Http\Requests\Backend\Blogs\UpdateBlogsRequest;
-use App\Http\Responses\Backend\Blog\EditResponse;
+use App\Http\Responses\Backend\Blogs\EditResponse;
 use App\Http\Responses\RedirectResponse;
 use App\Http\Responses\ViewResponse;
 use App\Models\Blog;
@@ -61,7 +61,32 @@ class BlogsController extends Controller
      */
     public function store(StoreBlogsRequest $request)
     {
-        $this->repository->create($request->except(['_token', '_method']));
+        $requestData = $request->all();
+      
+        // Create an empty array to store the localized data
+        $localizedData = [];
+
+        // Loop through the provided localization array
+        foreach ($requestData['localization'] as $index => $language) {
+            // Use language code as key (assuming the language code is available)
+            $languageCode = 'ar'; // Replace 'ar' with the actual language code
+            $localizedData[$languageCode] = [
+                'title' => $requestData['localization'][0],
+                'content' => $requestData['localization'][1],
+                // Add other fields as needed
+            ];
+        }
+    
+        // Convert the localized data to JSON
+        $localizedDataJson = json_encode($localizedData);
+        // $decodedData = json_decode($localizedDataJson, true, 512, JSON_UNESCAPED_UNICODE);
+
+    
+        // Update the request data with the JSON representation
+        $requestData['localization'] = $localizedDataJson;
+    
+         $this->repository->create($requestData);
+        // $this->repository->create($request->except(['_token', '_method']));
 
         return new RedirectResponse(route('admin.blogs.index'), ['flash_success' => __('alerts.backend.blogs.created')]);
     }
@@ -77,6 +102,7 @@ class BlogsController extends Controller
         $blogCategories = BlogCategory::getSelectData();
         $blogTags = BlogTag::getSelectData();
 
+        
         return new EditResponse($blog, $blog->statuses, $blogCategories, $blogTags);
     }
 

@@ -38,7 +38,7 @@ class SupportsController extends Controller
 
     public function update(SupportRequest $contact, UpdateSupportRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $contact->update($request->all());
         return new RedirectResponse(url('admin/contacts/1/edit'), ['flash_success' => __('Contact Information Updated.')]);
     }

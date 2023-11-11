@@ -18,6 +18,7 @@ class BlogCategory extends BaseModel
      */
     protected $fillable = [
         'name',
+        'localization',
         'status',
         'created_by',
         'updated_by',

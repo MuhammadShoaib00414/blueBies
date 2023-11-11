@@ -13,10 +13,16 @@
     <div class="row mt-4 mb-4">
         <div class="col">
             <div class="form-group row">
-                {{ Form::label('name', trans('validation.attributes.backend.access.blog-categories.name'), ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label('name', trans('Category in English'), ['class' => 'col-md-2 from-control-label required']) }}
                 
-                <div class="col-md-10">
+                <div class="col-md-4">
                     {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.backend.access.blog-categories.name'), 'required' => 'required']) }}
+                </div><!--col-->
+
+                {{ Form::label('name', trans('Category in Arabic'), ['class' => 'col-md-2 from-control-label required']) }}
+                
+                <div class="col-md-4">
+                    {{ Form::text('localization', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.backend.access.blog-categories.name'), 'required' => 'required']) }}
                 </div><!--col-->
             </div><!--form-group-->
 

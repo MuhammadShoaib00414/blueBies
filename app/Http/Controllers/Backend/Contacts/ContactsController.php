@@ -42,6 +42,7 @@ class ContactsController extends Controller
 
     public function update(Contacts $contact, UpdateContactRequest $request)
     {
+        // dd($request->all());
         $contact->update($request->all());
         return new RedirectResponse(url('admin/contacts/1/edit'), ['flash_success' => __('Contact Information Updated.')]);
     }

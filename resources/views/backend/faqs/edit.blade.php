@@ -10,7 +10,7 @@
 {{ Form::model($faq, ['route' => ['admin.faqs.update', $faq], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'id' => 'create-permission', 'files' => true]) }}
 
     <div class="card">
-        @include('backend.faqs.form')
+        @include('backend.faqs.edit-form')
         @include('backend.components.footer-buttons', [ 'cancelRoute' => 'admin.faqs.index', 'id' => $faq->id ])
     </div><!--card-->
     {{ Form::close() }}

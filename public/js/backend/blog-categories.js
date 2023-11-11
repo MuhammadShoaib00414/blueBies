@@ -21,6 +21,7 @@
                     columns: [
 
                         { data: 'name', name: 'name' },
+                        // { data: 'localization', name: 'localization' },
                         { data: 'status', name: 'status' },
                         { data: 'created_by', name: 'created_by' },
                         { data: 'created_at', name: 'created_at' },

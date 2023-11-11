@@ -15,5 +15,5 @@ class Faq extends BaseModel
      *
      * @var array
      */
-    protected $fillable = ['question', 'answer', 'status'];
+    protected $fillable = ['question', 'answer', 'status','localization'];
 }

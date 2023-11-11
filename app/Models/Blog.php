@@ -25,6 +25,7 @@ class Blog extends BaseModel
         'cannonical_link',
         'meta_keywords',
         'meta_description',
+        'localization',
         'status',
         'featured_image',
         'created_by',

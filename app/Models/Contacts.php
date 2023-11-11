@@ -15,5 +15,5 @@ class Contacts extends BaseModel
      *
      * @var array
      */
-    protected $fillable = ['address', 'phoneNumber', 'email','deleted_at'];
+    protected $fillable = ['address', 'localization','phoneNumber', 'email','deleted_at'];
 }

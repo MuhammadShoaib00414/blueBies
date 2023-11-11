@@ -20,6 +20,7 @@ class LocaleMiddleware
      */
     public function handle($request, Closure $next)
     {
+        // dd('sa');
         // Locale is enabled and allowed to be changed
         if (config('locale.status') && session()->has('locale') && array_key_exists(session()->get('locale'), config('locale.languages'))) {
             // Set the Laravel locale

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Responses\Backend\Blog;
+namespace App\Http\Responses\Backend\Blogs;
 
 use Illuminate\Contracts\Support\Responsable;
 
@@ -16,6 +16,7 @@ class EditResponse implements Responsable
 
     public function __construct($blog, $status, $blogCategories, $blogTags)
     {
+        
         $this->blog = $blog;
         $this->status = $status;
         $this->blogTags = $blogTags;

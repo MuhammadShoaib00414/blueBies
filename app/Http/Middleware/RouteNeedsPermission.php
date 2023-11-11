@@ -15,6 +15,7 @@ class RouteNeedsPermission
      */
     public function handle($request, Closure $next, $permission, $needsAll = false)
     {
+        
         // Permission array
         if (strpos($permission, ';') !== false) {
             $permissions = explode(';', $permission);

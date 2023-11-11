@@ -47,10 +47,14 @@ class BlogCategoriesTableController extends Controller
             ->editColumn('created_at', function ($blogcategory) {
                 return $blogcategory->created_at->toDateString();
             })
+            ->addColumn('localization', function ($blogcategory) {
+                return $blogcategory->localization; // Add this line to show the localization column
+            })
             ->addColumn('actions', function ($blogcategory) {
                 return $blogcategory->action_buttons;
             })
             ->escapeColumns(['name'])
             ->make(true);
     }
+    
 }

@@ -25,7 +25,7 @@
                         active_class(Route::is('admin/auth*'))
                     }}" href="#">
                         <i class="nav-icon far fa-user"></i>
-                        @lang('menus.backend.access.title')
+                        @lang('Users')
 
                             @if($pending_approval > 0)
                                 <span class="badge badge-danger">{{ $pending_approval }}</span>
@@ -44,7 +44,7 @@
                                     @endif
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link {{
                                 active_class(Route::is('admin/auth/role*'))
                             }}" href="{{ route('admin.auth.role.index') }}">
@@ -58,7 +58,7 @@
                             }}" href="{{ route('admin.auth.permission.index') }}">
                                 @lang('labels.backend.access.permissions.management')
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
 
@@ -115,13 +115,13 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link {{
                             active_class(Route::is('admin/blogs/blog-tags*'))
                         }}" href="{{ route('admin.blog-tags.index') }}">
                                 @lang('labels.backend.access.blog-tag.management')
                             </a>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item">
                             <a class="nav-link {{ active_class(Route::is('admin/blogs')) }}"
@@ -185,6 +185,34 @@
                 </li>
 
                 <li class="divider"></li>
+                <li class="nav-item nav-dropdown {{
+                    active_class(Route::is('admin/packages'), 'open')
+                }}">
+                <a class="nav-link nav-dropdown-toggle {{
+                            active_class(Route::is('admin/packages*'))
+                        }}" href="#">
+                    <i class="nav-icon fas fa-rss"></i> Subscriptions
+                </a>
+
+                <ul class="nav-dropdown-items">
+        
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Route::is('admin/packages/packages*'))
+                        }}" href="{{ route('admin.packages.index') }}">
+                           List of Package
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_class(Route::is('admin/features')) }}"
+                            href="{{ route('admin.features.index') }}">
+                            List of Package Feature
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="divider">
 
                 <li class="nav-item nav-dropdown {{
                     active_class(Route::is('admin/log-viewer*'), 'open')
