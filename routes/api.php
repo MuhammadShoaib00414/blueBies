@@ -16,10 +16,15 @@ use Illuminate\Http\Request;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
+Route::post('register', 'RegisterController@register');
 
 Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], function () {
     Route::group(['prefix' => 'auth', 'middleware' => ['guest']], function () {
-        Route::post('register', 'RegisterController@register');
+        
+       
+            // Route::post('register', 'RegisterController@register');
+
+      
         Route::post('login', 'AuthController@login');
         // Password Reset
         Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
@@ -44,6 +49,9 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
             Route::get('partners', 'SupportsController@partners');
 
             Route::get('faqs-data', 'SupportsController@faqs');
+
+            Route::get('pakagefeature', 'SupportsController@FeaturePackage');
+
 
         });
         // partner

@@ -21,4 +21,5 @@ class Features extends BaseModel
     {
         return $this->belongsToMany(Packages::class, 'package_features', 'feature_id', 'package_id');
     }
+    
 }

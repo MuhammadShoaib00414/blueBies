@@ -42,11 +42,13 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\LocaleMiddleware::class,
             \App\Http\Middleware\ToBeLoggedOut::class,
+            \App\Http\Middleware\CorsMiddleware::class,
         ],
 
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Cors::class,
         ],
 
         'admin' => [
@@ -84,7 +86,8 @@ class Kernel extends HttpKernel
         'access.routeNeedsRole' => \App\Http\Middleware\RouteNeedsRole::class,
         'access.routeNeedsPermission' => \App\Http\Middleware\RouteNeedsPermission::class,
 
-        'cors'          => \App\Http\Middleware\Cors::class, // adde
+        'cors'=> \App\Http\Middleware\Cors::class, // adde
+        'CorsMiddleware' => \App\Http\Middleware\CorsMiddleware::class,
     ];
 
     /**

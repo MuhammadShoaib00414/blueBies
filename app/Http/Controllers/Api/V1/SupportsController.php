@@ -7,6 +7,8 @@ use App\Http\Resources\FaqsResource;
 use App\Models\Partners;
 use App\Models\Faq;
 use App\Models\Contacts;
+use App\Models\Features;
+use App\Models\Packages;
 use App\Models\SupportRequest;
 use App\Repositories\Backend\FaqsRepository;
 use Illuminate\Http\Response;
@@ -68,6 +70,27 @@ class SupportsController extends APIController
         $supportData = Partners::all(); // Retrieve all support records
         return response()->json($supportData);  
     }
+
+    public function FeaturePackage()
+    {
+        // $featureData = Features::all(); // Retrieve all features records
+        $packageData = Packages::all(); // Retrieve all packages records        
+        $packageIds = Packages::pluck('id')->toArray(); // Get an array of all package IDs
+
+        $features = Features::with(['packages' => function ($query) use ($packageIds) {
+            $query->whereIn('package_id', $packageIds);
+        }])->get();
+
+        // dd( $features );
+        // $features will contain the features with associated package_features that match the specified package_id
+        
+    
+        return response()->json([
+            'features' => $features,
+            // 'packages' => $packageData,
+        ]);  
+    }
+    
 
 
     public function faqs()

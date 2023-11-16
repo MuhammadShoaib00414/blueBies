@@ -28,10 +28,14 @@ class DatabaseSeeder extends Seeder
         $this->call(FaqTableSeeder::class);
         $this->call(EmailTemplateSeeder::class);
         $this->call(BlogTableSeeder::class);
+        $this->call(BlogCategoryTableSeeder::class);
+        $this->call(PackagesTableSeeder::class);
 
         $this->call(FeaturesTableSeeder::class);
+        $this->call(PartnersTableSeeder::class);
+       
         $this->call(PackageFeaturesTableSeeder::class);
-        $this->call(PackagesTableSeeder::class);
+       
 
 
         Model::reguard();
